@@ -113,8 +113,8 @@ describe ProposalsController do
         get :index, :event_id => @event.id, :format => "xml"
 
         @proposals = assigns(:proposals)
-        @struct = XmlSimple.xml_in_string(response.body)
-        @records = @struct['record']
+        @struct = Hash.from_xml(response.body)
+        @records = @struct['records']
         @record = @records.first
       end
 
