@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.search_proposal_speakers '/proposals/search_speakers/:id', :controller => 'proposals', :action => 'search_speakers', :requirements => { :method => :post }
 
   map.sessions '/sessions', :controller => 'proposals', :action => 'sessions_index'
+  map.schedule '/schedule', :controller => 'proposals', :action => 'schedule'
   map.session '/sessions/:id', :controller => 'proposals', :action => 'session_show'
 
   map.resources :events, :member => { :speakers => :get } do |event|
@@ -21,7 +22,6 @@ ActionController::Routing::Routes.draw do |map|
     event.resources :schedule_items
     event.sessions '/sessions', :controller => 'proposals', :action => 'sessions_index'
     event.schedule '/schedule', :controller => 'proposals', :action => 'schedule'
-    event.formatted_schedule '/schedule.:format', :controller => 'proposals', :action => 'schedule'
     event.session '/sessions/:id', :controller => 'proposals', :action => 'session_show'
   end
   
@@ -44,8 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   # Authentication
   map.resources :users, :member => { :complete_profile => :get, :proposals => :get }, :requirements => { :id => /\w+/ } do |user|
     user.favorites 'favorites', { :controller => 'user_favorites', :action => 'index' }
-    user.formatted_favorites 'favorites.:format', { :controller => 'user_favorites', :action => 'index' }
-    user.formatted_modify_favorites 'favorites/modify.:format', { :controller => 'user_favorites', :action => 'modify', :conditions => { :method => :put } }
+    user.modify_favorites 'favorites/modify', { :controller => 'user_favorites', :action => 'modify', :conditions => { :method => :put } }
   end
   map.open_id_complete '/browser_session', :controller => "browser_sessions", :action => "create", :requirements => { :method => :get }
   map.login            '/login',  :controller => 'browser_sessions', :action => 'new'
