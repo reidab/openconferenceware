@@ -4,7 +4,7 @@
 source :gemcutter
 
 # Rails version, which must be specified here AND in the environment.rb:
-gem 'rails', '~> 2.1.2'
+gem 'rails', '~> 2.3.0'
 
 # Selectively-loaded:
 gem 'facets',       '~> 2.8.0', :require => false # For initializers/dependencies.rb
@@ -14,16 +14,17 @@ gem 'ruby-openid',  '~> 2.1.0', :require => false # For open_id_authentication
 gem 'sqlite3-ruby', '~> 1.2.0', :require => false # For default database driver
 
 # Necessary:
-gem 'RedCloth',            '~> 4.2.3'
-gem 'aasm',                '~> 2.1.5'
-gem 'acts-as-taggable-on', '~> 1.1.5'
-gem 'color',               '~> 1.4.1'
-gem 'deep_merge',          '~> 0.1.0'
-gem 'fastercsv',           '~> 1.5.3'
-gem 'gchartrb',            '~> 0.8.0', :require => 'google_chart'
-gem 'hpricot',             '~> 0.8.2'
-gem 'paperclip',           '~> 2.3.1'
-gem 'vpim',                '=  0.695', :require => 'vpim/icalendar'
+gem 'acts-as-taggable-on', :version => '~> 1.1.5'
+gem 'paperclip',           :version => '~> 2.3.1'
+gem 'aasm',                :version => '~> 2.1.5'
+gem 'gchartrb',            :lib => 'google_chart'
+gem 'vpim',                :lib => 'vpim/icalendar'
+gem 'RedCloth'
+gem 'color'
+gem 'deep_merge'
+gem 'hpricot'
+gem 'fastercsv'
+gem 'comma',               :version => '~> 0.3.2'
 
 group :development do
   gem 'capistrano',     :require => false
