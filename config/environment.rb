@@ -29,6 +29,9 @@ RAILS_GEM_VERSION = '~> 2.3.0' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+# Don't bother warning that unpacked gem foo in vendor/gems has no specification file.
+Rails::VendorGemSourceIndex.silence_spec_warnings = true
+
 Rails::Initializer.run do |config|
   # For more gem dependencies see:
   # * Gemfile
