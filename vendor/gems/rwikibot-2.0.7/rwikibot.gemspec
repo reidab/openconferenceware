@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email = %q{eddieroger@gmail.com}
   s.extra_rdoc_files = ["README.textile"]
   s.files = ['lib/*.rb', 'test/*']
-  s.files = ["CHANGELOG", "README.textile", "Rakefile", "lib/rwikibot.rb","lib/pages.rb","lib/errors.rb", "lib/utilities.rb"]
+  s.files = ["API_Changes.txt", "History.txt", "README.textile", "Rakefile", "lib/rwikibot.rb","lib/rwikibot/pages.rb","lib/rwikibot/errors.rb", "lib/rwikibot/utilities.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://rwikibot.net/wiki}
   s.rdoc_options = ["--main","--inline-source","--force-update", "README.textile"]

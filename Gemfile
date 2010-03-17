@@ -25,6 +25,7 @@ gem 'deep_merge'
 gem 'hpricot'
 gem 'fastercsv'
 gem 'comma',               :version => '~> 0.3.2'
+gem 'rwikibot',            :version => '= 2.0.7', :path => 'vendor/gems/rwikibot-2.0.7'
 
 group :development do
   gem 'capistrano',     :require => false
