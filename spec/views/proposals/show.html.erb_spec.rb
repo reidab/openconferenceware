@@ -24,7 +24,7 @@ describe "/proposals/show.html.erb" do
       assigns[:kind] = :proposal
     
       render "/proposals/show.html.erb"
-      response.should_not have_tag("div.proposal-status #{status}")
+      response.should_not have_selector("div.proposal-status #{status}")
     end
   end
   
@@ -37,7 +37,7 @@ describe "/proposals/show.html.erb" do
     assigns[:kind] = :proposal
     
     render "/proposals/show.html.erb"
-    response.should have_tag("div.proposal-status")
+    response.should have_selector("div.proposal-status")
   end
   
   %w[accepted rejected junk].each do |status|
@@ -50,7 +50,7 @@ describe "/proposals/show.html.erb" do
       assigns[:kind] = :proposal
     
       render "/proposals/show.html.erb"
-      response.should_not have_tag("div.proposal-status #{status}")
+      response.should_not have_selector("div.proposal-status #{status}")
     end
   end
 end
