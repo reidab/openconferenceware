@@ -94,7 +94,7 @@ module SharedFragmentHelper
     renderer.instance_variable_set(:@events, Event.lookup)
 
     # Render template:
-    filename = theme_file('layouts/_header.html.erb')
+    filename = theme_file('views/layouts/_header.html.erb')
     if File.exist?(filename)
       return renderer.render_file(filename)
     else

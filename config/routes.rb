@@ -53,6 +53,9 @@ ActionController::Routing::Routes.draw do |map|
   map.admin            '/admin',  :controller => 'browser_sessions', :action => 'admin'
   map.resource  :browser_session, :collection => ["admin"]
 
+  # Themes
+  map.themeing
+
   # Install the default routes as the lowest priority.
   # TODO Disable default routes, they're dangerous.
   map.connect ':controller/:action/:id'
