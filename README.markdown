@@ -92,7 +92,7 @@ To install the application and its dependencies:
 
 7. Install the application's libraries:
 
-        bundle install --without=conflict,borked
+        bundle install --without=borked
 
 8. Run the application's interactive setup and follow its instructions:
 
