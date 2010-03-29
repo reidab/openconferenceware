@@ -96,7 +96,7 @@ module SharedFragmentHelper
     # Render template:
     filename = theme_file('views/layouts/_header.html.erb')
     if File.exist?(filename)
-      return renderer.render_file(filename)
+      return renderer.render(:file => filename)
     else
       return nil
     end
