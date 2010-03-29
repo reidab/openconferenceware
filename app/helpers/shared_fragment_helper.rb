@@ -9,6 +9,12 @@
 # You can render the fragments from the command-line by running:
 #   ./script/runner "SharedFragmentHelper.render_shared_fragments"
 module SharedFragmentHelper
+  # Should the shared fragments be rendered? If +false+, no.
+  mattr_accessor :shared_fragment_render
+
+  # What time were the shared fragments last asked to render?
+  mattr_accessor :shared_fragment_rendered
+
   # Provides the TestRequest and TestRequest objects for ::render_theme_header_to_string.
   require 'action_controller/test_process'
 
@@ -75,6 +81,9 @@ module SharedFragmentHelper
   # Return a string containing the theme's header for given event, or nil if
   # the theme doesn't have a header partial found.
   def self.render_theme_header_to_string(event=nil)
+    self.shared_fragment_rendered = Time.now
+    return false if self.shared_fragment_render == false
+
     # Get an Event record:
     case event
     when Event
