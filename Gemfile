@@ -4,7 +4,7 @@
 source :gemcutter
 
 # Rails version, which must be specified here AND in the environment.rb:
-gem 'rails', '~> 2.3.0'
+gem 'rails', '~> 2.3.5'
 
 # Selectively-loaded:
 gem 'facets',       '~> 2.8.0', :require => false # For initializers/dependencies.rb
