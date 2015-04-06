@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211191546) do
+ActiveRecord::Schema.define(version: 20150406221528) do
 
   create_table "open_conference_ware_authentications", force: true do |t|
     t.integer  "user_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "updated_at"
   end
 
-  add_index "open_conference_ware_comments", ["proposal_id"], name: "index_comments_on_proposal_id"
+  add_index "open_conference_ware_comments", ["proposal_id"], name: "index_open_conference_ware_comments_on_proposal_id"
 
   create_table "open_conference_ware_events", force: true do |t|
     t.string   "title"
@@ -56,8 +56,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.boolean  "show_proposal_confirmation_controls",     default: false
   end
 
-  add_index "open_conference_ware_events", ["id"], name: "index_events_on_id", unique: true
-  add_index "open_conference_ware_events", ["slug"], name: "index_events_on_slug"
+  add_index "open_conference_ware_events", ["slug"], name: "index_open_conference_ware_events_on_slug"
 
   create_table "open_conference_ware_proposals", force: true do |t|
     t.integer  "user_id"
@@ -86,16 +85,19 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "notified_at"
   end
 
-  add_index "open_conference_ware_proposals", ["event_id"], name: "index_proposals_on_event_id"
-  add_index "open_conference_ware_proposals", ["room_id"], name: "index_proposals_on_room_id"
-  add_index "open_conference_ware_proposals", ["submitted_at"], name: "index_proposals_on_submitted_at"
-  add_index "open_conference_ware_proposals", ["track_id"], name: "index_proposals_on_track_id"
-  add_index "open_conference_ware_proposals", ["user_id"], name: "index_proposals_on_user_id"
+  add_index "open_conference_ware_proposals", ["event_id"], name: "index_open_conference_ware_proposals_on_event_id"
+  add_index "open_conference_ware_proposals", ["room_id"], name: "index_open_conference_ware_proposals_on_room_id"
+  add_index "open_conference_ware_proposals", ["submitted_at"], name: "index_open_conference_ware_proposals_on_submitted_at"
+  add_index "open_conference_ware_proposals", ["track_id"], name: "index_open_conference_ware_proposals_on_track_id"
+  add_index "open_conference_ware_proposals", ["user_id"], name: "index_open_conference_ware_proposals_on_user_id"
 
   create_table "open_conference_ware_proposals_users", id: false, force: true do |t|
     t.integer "proposal_id"
     t.integer "user_id"
   end
+
+  add_index "open_conference_ware_proposals_users", ["proposal_id"], name: "index_open_conference_ware_proposals_users_on_proposal_id"
+  add_index "open_conference_ware_proposals_users", ["user_id"], name: "index_open_conference_ware_proposals_users_on_user_id"
 
   create_table "open_conference_ware_rooms", force: true do |t|
     t.string   "name",                  null: false
@@ -112,7 +114,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "image_updated_at"
   end
 
-  add_index "open_conference_ware_rooms", ["event_id"], name: "index_rooms_on_event_id"
+  add_index "open_conference_ware_rooms", ["event_id"], name: "index_open_conference_ware_rooms_on_event_id"
 
   create_table "open_conference_ware_schedule_items", force: true do |t|
     t.string   "title"
@@ -126,15 +128,18 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "updated_at"
   end
 
-  add_index "open_conference_ware_schedule_items", ["event_id"], name: "index_schedule_items_on_event_id"
-  add_index "open_conference_ware_schedule_items", ["room_id"], name: "index_schedule_items_on_room_id"
+  add_index "open_conference_ware_schedule_items", ["event_id"], name: "index_open_conference_ware_schedule_items_on_event_id"
+  add_index "open_conference_ware_schedule_items", ["room_id"], name: "index_open_conference_ware_schedule_items_on_room_id"
 
   create_table "open_conference_ware_selector_votes", force: true do |t|
     t.integer "user_id",     null: false
     t.integer "proposal_id", null: false
     t.integer "rating",      null: false
     t.text    "comment"
+    t.integer "event_id"
   end
+
+  add_index "open_conference_ware_selector_votes", ["event_id"], name: "index_open_conference_ware_selector_votes_on_event_id"
 
   create_table "open_conference_ware_session_types", force: true do |t|
     t.string   "title"
@@ -145,7 +150,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "updated_at"
   end
 
-  add_index "open_conference_ware_session_types", ["event_id"], name: "index_session_types_on_event_id"
+  add_index "open_conference_ware_session_types", ["event_id"], name: "index_open_conference_ware_session_types_on_event_id"
 
   create_table "open_conference_ware_snippets", force: true do |t|
     t.string   "slug",                       null: false
@@ -157,7 +162,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "updated_at"
   end
 
-  add_index "open_conference_ware_snippets", ["slug"], name: "index_snippets_on_slug", unique: true
+  add_index "open_conference_ware_snippets", ["slug"], name: "index_open_conference_ware_snippets_on_slug", unique: true
 
   create_table "open_conference_ware_taggings", force: true do |t|
     t.integer  "tag_id"
@@ -169,8 +174,8 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.datetime "created_at"
   end
 
-  add_index "open_conference_ware_taggings", ["tag_id"], name: "index_taggings_on_tag_id"
-  add_index "open_conference_ware_taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "open_conference_ware_taggings", ["tag_id"], name: "index_open_conference_ware_taggings_on_tag_id"
+  add_index "open_conference_ware_taggings", ["taggable_id", "taggable_type", "context"], name: "index_ocw_taggings_on_id_type_and_context"
 
   create_table "open_conference_ware_tags", force: true do |t|
     t.string "name"
@@ -186,7 +191,7 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.text     "excerpt"
   end
 
-  add_index "open_conference_ware_tracks", ["event_id"], name: "index_tracks_on_event_id"
+  add_index "open_conference_ware_tracks", ["event_id"], name: "index_open_conference_ware_tracks_on_event_id"
 
   create_table "open_conference_ware_user_favorites", force: true do |t|
     t.integer  "user_id"
@@ -215,5 +220,23 @@ ActiveRecord::Schema.define(version: 20131211191546) do
     t.string   "twitter"
     t.boolean  "selector",                        default: false
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+
+  create_table "tags", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
 end
